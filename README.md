@@ -1,6 +1,5 @@
-# dbt TPC-H Sample
-
-This is a dbt sample project for Snowflake using the `TPC-H` example dataset that ships as a shared database with Snowflake.
+# dbt TPC-H demo
+This is a dbt sample project for Databricks using the `TPC-H` example dataset that ships as a shared database with databricks.
 
 More details can be found on the [TPC website](http://www.tpc.org/tpch/default.asp) and in the [specification document](http://www.tpc.org/tpc_documents_current_versions/pdf/tpc-h_v2.18.0.pdf).
 
@@ -22,14 +21,14 @@ tpch:
     target: dev
     outputs:
         prod:
-            type: snowflake
+            type: databricks
             threads: 8
             account: <account>
             user: <user>
             password: <password>
             role: <role>
             database: <target_database>
-            warehouse: <snowflake_warehouse>
+            warehouse: <warehouse>
             schema: <default_schema>
 
         dev:
@@ -46,7 +45,7 @@ tpch:
 
 ## Packages
 
-This project make use of the [dbt_utils](https://github.com/fishtown-analytics/dbt-utils) package, so you will need to call `dbt deps` before running any model to ensure dbt can combile all package macros.
+This project make use of the [dbt_utils](https://github.com/dbt_labs/dbt-utils) package, so you will need to call `dbt deps` before running any model to ensure dbt can combile all package macros.
 
 
 ## Scaling Factor
@@ -59,16 +58,16 @@ version: 2
 
 sources:
   - name: tpch
-    database: SNOWFLAKE_SAMPLE_DATA
+    database: tpch
     schema: TPCH_SF10
-    loader: Snowflake
+    loader: tpch
 
 ...
 
 ```
-## Snowflake Usage
+## Databricks
 
-Using an X-Small warehouse (1 credit / hour), the project currently runs in about *5 minutes* against the `TPCH_SF10` database.
+Using an X-Small warehouse (1 credit / hour), the project currently runs in about *5 minutes* against the `TPCH` database.
 
 ---
 - [What is dbt](https://dbt.readme.io/docs/overview)?
